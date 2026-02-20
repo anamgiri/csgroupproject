@@ -1,57 +1,56 @@
-
-
 import java.util.Arrays;
 
 /**
- * FeatureRestock: Final Complete Version
- * Corrects: Implicit class error, Main method missing, and Loop logic error.
+ * FeatureRestock
+ * Updates inventory by restocking an existing item.
  */
 public class FeatureRestock {
 
     public static void main(String[] args) {
-        // Sample data for testing
+        // Inventory data
         String[] items = {"Apples", "Bananas", "Oranges"};
         int[] inventory = {10, 5, 8};
 
-        System.out.println("--- Starting Restock System ---");
-        
-        // Test 1: Successful restock
+        // Example restock call
         restockItem(items, inventory, "Bananas", 5);
-        
-        // Test 2: Item not found test
-        restockItem(items, inventory, "Grapes", 10);
-        
-        // Final Status check
-        System.out.println("Final Inventory: " + Arrays.toString(inventory));
+
+        // Display updated inventory
+        System.out.println("Updated Inventory: " + Arrays.toString(inventory));
     }
 
     /**
-     * Finds the target item and updates its stock.
-     * Logic is optimized to stop searching once found and report errors correctly.
+     * Restocks an item if it exists in the inventory.
+     *
+     * @param names   array of item names
+     * @param stocks  array of stock quantities
+     * @param target  item to restock
+     * @param amount  quantity to add
      */
     public static void restockItem(String[] names, int[] stocks, String target, int amount) {
-        // Validation: Ensure amount is positive
-        if (amount <= 0) {
-            System.out.println("Error: Restock amount must be greater than 0.");
+
+        // Validate arrays
+        if (names.length != stocks.length) {
+            System.out.println("Inventory data error: item list and stock list do not match.");
             return;
         }
 
-        boolean found = false;
+        // Validate restock amount
+        if (amount <= 0) {
+            System.out.println("Restock failed: amount must be greater than zero.");
+            return;
+        }
 
-        // Loop through the items array
+        // Search for the item
         for (int i = 0; i < names.length; i++) {
-            // Check if slot is not empty and matches target (case-insensitive)
             if (names[i] != null && names[i].equalsIgnoreCase(target)) {
                 stocks[i] += amount;
-                System.out.println("SUCCESS: " + target + " restocked. New balance: " + stocks[i]);
-                found = true;
-                break; // Exit loop immediately once found
+                System.out.println(names[i] + " successfully restocked.");
+                System.out.println("New quantity: " + stocks[i]);
+                return;  // stop once item is found
             }
         }
 
-        // Logical Fix: Only print this if the loop finished and 'found' is still false
-        if (!found) {
-            System.out.println("ERROR: Item '" + target + "' was not found in the list.");
-        }
+        // Item not found
+        System.out.println("Restock failed: item \"" + target + "\" not found.");
     }
 }
