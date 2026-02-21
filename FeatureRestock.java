@@ -2,21 +2,9 @@ import java.util.Arrays;
 
 /**
  * FeatureRestock
- * Updates inventory by restocking an existing item.
+ * Provides functionality to update inventory by restocking an existing item.
  */
 public class FeatureRestock {
-
-    public static void main(String[] args) {
-        // Inventory data
-        String[] items = {"Apples", "Bananas", "Oranges"};
-        int[] inventory = {10, 5, 8};
-
-        // Example restock call
-        restockItem(items, inventory, "Bananas", 5);
-
-        // Display updated inventory
-        System.out.println("Updated Inventory: " + Arrays.toString(inventory));
-    }
 
     /**
      * Restocks an item if it exists in the inventory.
