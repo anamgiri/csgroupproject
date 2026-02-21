@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Demonstrates parallel arrays with a menu system
  * allowing users to view inventory and restock items.
  *
- * @author Anam
+ * @author Mandip
  * @version 1.0
  */
 public class GroceryManager {
